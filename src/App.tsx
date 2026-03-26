@@ -1,7 +1,14 @@
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const App = () => {
     return (
         <main>
-            <div>Welcome to the world of GTA</div>
+            <div>
+                <h1>Welcome to the world of GTA</h1>
+            </div>
         </main>
     );
 };
