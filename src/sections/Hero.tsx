@@ -1,7 +1,8 @@
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
 import { useMaskSettings } from '../../constants';
 import ComingSoon from './ComingSoon';
-import { useGSAP } from '@gsap/react';
 
 const Hero = () => {
     const { initialMaskPos, initialMaskSize, maskPos, maskSize } = useMaskSettings();
@@ -12,14 +13,9 @@ const Hero = () => {
             maskSize: initialMaskSize,
         });
 
-        gsap.set('.mask', {
-            marginTop: '-100vh',
-            opacity: 0,
-        });
+        gsap.set('.mask-logo', { marginTop: '-100vh', opacity: 0 });
 
-        gsap.set('.entrance-message', {
-            marginTop: '0vh',
-        });
+        gsap.set('.entrance-message', { marginTop: '0vh' });
 
         const tl = gsap.timeline({
             scrollTrigger: {
@@ -31,11 +27,8 @@ const Hero = () => {
             },
         });
 
-        tl.to('.fade-out', {
-            opacity: 0,
-            ease: 'power1.inOut',
-        })
-            .to('.scale-out', { scale: 1, ease: 'power1.out' })
+        tl.to('.fade-out', { opacity: 0, ease: 'power1.inOut' })
+            .to('.scale-out', { scale: 1, ease: 'power1.inOut' })
             .to('.mask-wrapper', { maskSize, ease: 'power1.inOut' }, '<')
             .to('.mask-wrapper', { opacity: 0 })
             .to(
@@ -62,7 +55,7 @@ const Hero = () => {
     return (
         <section className="hero-section">
             <div className="size-full mask-wrapper">
-                <img src="/images/hero-bg.webp" alt="hero-bg" className="scale-out" />
+                <img src="/images/hero-bg.webp" alt="background" className="scale-out" />
                 <img src="/images/hero-text.webp" alt="hero-logo" className="title-logo fade-out" />
                 <img
                     src="/images/watch-trailer.png"
@@ -73,6 +66,7 @@ const Hero = () => {
                     <img src="/images/play.png" alt="play" className="w-7 ml-1" />
                 </div>
             </div>
+
             <div>
                 <img
                     src="/images/big-hero-text.svg"
@@ -80,11 +74,14 @@ const Hero = () => {
                     className="size-full object-cover mask-logo"
                 />
             </div>
+
             <div className="fake-logo-wrapper">
-                <img src="/images/big-hero-text.svg" alt="logo" className="overlay-logo" />
+                <img src="/images/big-hero-text.svg" className="overlay-logo" />
             </div>
+
             <ComingSoon />
         </section>
     );
 };
+
 export default Hero;
